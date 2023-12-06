@@ -1,9 +1,9 @@
 <mat-toolbar class="d-flex justify-content-between align-items-center">
     <span>My Store</span>
-    <div>
+    <a routerLink="check-out" style="text-decoration: none;">
         <button mat-icon-button aria-label="Example icon-button with share icon">
             <i class="fa-solid fa-cart-shopping"></i>
         </button>
-        <span>R$40,00</span>
-    </div>
+        <span>R$ {{TotalPrice | number: '2.2-2'}}</span>
+    </a>
   </mat-toolbar>

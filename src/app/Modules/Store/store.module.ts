@@ -8,13 +8,15 @@ import { ProductListComponent } from './Pages/Products/List/product-list.compone
 import { ProductComponent } from './components/Product/product.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { HeaderComponent } from './components/Header/header.component';
+import { CartCheckOutComponent } from './Pages/Cart/Check-out/cart-check-out.component';
 
 @NgModule({
   declarations: [
     StoreComponent,
     ProductListComponent,
     ProductComponent,
-    HeaderComponent
+    HeaderComponent,
+    CartCheckOutComponent
   ],
   imports: [
     StoreRoutingModule,

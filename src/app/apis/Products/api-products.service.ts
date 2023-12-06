@@ -13,7 +13,6 @@ export class ApiProductsService {
     constructor(private readonly http: HttpClient) {}
 
     Query(request: ProductQueryRequest): Observable<ProductSimpleResponse[]>{
-        console.log(request)
         return this.http.get<ProductSimpleResponse[]>(this._baseUrl, {params: {...request} as any});
     }
 }

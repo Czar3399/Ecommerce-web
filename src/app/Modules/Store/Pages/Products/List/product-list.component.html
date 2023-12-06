@@ -19,13 +19,19 @@
                 <mat-label >Trademark</mat-label>
                 <input matInput [(ngModel)]="request.Trademark">
             </mat-form-field>
-            <mat-form-field class="col-3" floatLabel="always">
-                <mat-label>Amount</mat-label>
-                <input matInput type="number" class="example-right-align" placeholder="0"  [(ngModel)]="request.Price">
+            <mat-form-field class="col-2" floatLabel="always">
+                <mat-label>Min Amount</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"  [(ngModel)]="request.MinPrice">
                 <span matTextPrefix>$&nbsp;</span>
                 <span matTextSuffix>.00</span>
               </mat-form-field>
-              <div class=" col-3 d-flex justify-content-center align-items-center">
+              <mat-form-field class="col-2" floatLabel="always">
+                <mat-label>Max Amount</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"  [(ngModel)]="request.MaxPrice">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+              </mat-form-field>
+              <div class=" col-2 d-flex justify-content-center align-items-center">
                   <button mat-raised-button class="w-50" (click)="GetProducts()">Search</button>
               </div>
             </div>
@@ -33,13 +39,14 @@
     </mat-card>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col" *ngIf="hasCart">
       <app-product
         *ngFor="let product of products"
-        [Id]="1"
+        [Id]="product.Id"
         [Name]="product.Name"
         [ImageUrl]="product.ImageUrl"
         [Price]="product.Price"
+        [Trademark]="product.Trademark"
       >
       </app-product>
     </div>

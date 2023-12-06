@@ -1,7 +1,7 @@
+import { ProductSimpleResponse } from "src/app/apis/Products/models/responses/product-simple.response";
+
 export interface CartProductResponse {
-    ProductId: number;
-    ProductName: number;
-    ProductImage: number;
-    Quantity: number;
+    Product: ProductSimpleResponse;
     TotalPrice: number;
+    Quantity: number;
 }

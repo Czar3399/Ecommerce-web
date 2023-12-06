@@ -14,26 +14,31 @@ export class ProductComponent implements OnInit{
     @Input() Name!: string; 
     @Input() ImageUrl!: string; 
     @Input() Price!: number; 
-    @Input() Trademark: string = "My company"; 
+    @Input() Trademark!: string; 
     Quantity: number  = 0;
     QuantityBeforeSave: number  = 0;
 
 
-    saveDebounce = new Subject<number>();
+    quantityChanged = new Subject();
     constructor(private readonly cartService: CartService) {}
     ngOnInit(): void {
         this.Quantity = this.cartService.GetQuantity(this.Id);
         this.QuantityBeforeSave = this.Quantity;
+        this.quantityChanged.
+        pipe(debounceTime(500))
+        .subscribe(() => this.SaveChange())
     }
 
    
     ChangeQuantity(value: number){
         this.Quantity += value;
-
+        this.quantityChanged.next({});
     }
 
-    SaveChange(quantity: number){
-
-        this.QuantityBeforeSave = this.Quantity;
+    SaveChange(){
+        var ChangeQuantity = this.Quantity - this.QuantityBeforeSave;
+        this.cartService.ChangeProduct(this.Id, ChangeQuantity).subscribe(x => {
+            this.QuantityBeforeSave = this.Quantity;
+        })
     }
 }
