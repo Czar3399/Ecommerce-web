@@ -1,0 +1,36 @@
+  <div class="row">
+    <mat-card class="mb-3 border border-3 shadow">
+      <mat-card-title>Filters</mat-card-title>
+      <mat-card-content>
+        <div class="row">
+            <mat-form-field class="col-3">
+                <mat-label>Product Name</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+                <mat-label>Description</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+                <mat-label>Category</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+                <mat-label>Trademark</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-product
+        *ngFor="let product of products"
+        [Name]="product.Name"
+        [ImageUrl]="product.ImageUrl"
+        [Quantity]="0"
+      >
+      </app-product>
+    </div>
+  </div>

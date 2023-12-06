@@ -1,16 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { CartsService } from "src/app/apis/Carts/cart.service";
+import { ApiCartsService } from "src/app/apis/Carts/api-cart.service";
 import { ProductSimpleResponse } from "src/app/apis/Products/models/responses/product-simple.response";
-import { ProductsService } from "src/app/apis/Products/products.service";
+import { ApiProductsService } from "src/app/apis/Products/api-products.service";
 
 @Component({
     templateUrl: 'product-list.component.html',
+    styles: [`
+    
+    `]
 })
 export class ProductListComponent implements OnInit {
     
     products : ProductSimpleResponse[] | undefined;
-    constructor(private readonly productsService : ProductsService,
-                private readonly cartsService: CartsService) {
+    constructor(private readonly productsService : ApiProductsService,
+                private readonly cartsService: ApiCartsService) {
 
     }
 

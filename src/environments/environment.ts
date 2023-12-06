@@ -2,6 +2,6 @@
 export const environment = {
     production: false,
     Apis: {
-        ecommerce: "http://localhost:5085/"
+        ecommerce: "https://localhost:7218/"
     }
 };
