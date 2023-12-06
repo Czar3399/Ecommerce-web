@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiCartsService } from "src/app/apis/Carts/api-cart.service";
 import { ProductSimpleResponse } from "src/app/apis/Products/models/responses/product-simple.response";
+import { ProductQueryRequest } from "src/app/apis/Products/models/requests/product-query.request";
 import { ApiProductsService } from "src/app/apis/Products/api-products.service";
 
 @Component({
@@ -11,23 +11,18 @@ import { ApiProductsService } from "src/app/apis/Products/api-products.service";
 })
 export class ProductListComponent implements OnInit {
     
+    request = new ProductQueryRequest();
     products : ProductSimpleResponse[] | undefined;
-    constructor(private readonly productsService : ApiProductsService,
-                private readonly cartsService: ApiCartsService) {
+    constructor(private readonly productsService : ApiProductsService) {
 
     }
 
     ngOnInit(): void {
-        this.GetProducts()
-       
-    }
-
-    ChangeProduct() {
-
+        this.GetProducts();
     }
 
     GetProducts(){
-       this.productsService.Query({}).subscribe(x => {
+       this.productsService.Query(this.request).subscribe(x => {
          this.products = x
        })
     }

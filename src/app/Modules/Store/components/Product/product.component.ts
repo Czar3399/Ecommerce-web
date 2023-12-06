@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { CartService } from "../../Services/app-cart.service";
+import { Subject, debounceTime } from "rxjs";
 
 @Component({
     selector:"app-product",
@@ -7,11 +9,31 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
     
     `]
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit{
+    @Input() Id!: number; 
     @Input() Name!: string; 
     @Input() ImageUrl!: string; 
+    @Input() Price!: number; 
     @Input() Trademark: string = "My company"; 
-    @Input() Description: string = "Some description";
-    @Input() Quantity!: number;
-    @Output() ChangeQuantity = new EventEmitter<number>();
+    Quantity: number  = 0;
+    QuantityBeforeSave: number  = 0;
+
+
+    saveDebounce = new Subject<number>();
+    constructor(private readonly cartService: CartService) {}
+    ngOnInit(): void {
+        this.Quantity = this.cartService.GetQuantity(this.Id);
+        this.QuantityBeforeSave = this.Quantity;
+    }
+
+   
+    ChangeQuantity(value: number){
+        this.Quantity += value;
+
+    }
+
+    SaveChange(quantity: number){
+
+        this.QuantityBeforeSave = this.Quantity;
+    }
 }

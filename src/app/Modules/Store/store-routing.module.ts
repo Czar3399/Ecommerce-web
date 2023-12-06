@@ -17,6 +17,11 @@ const routes: Routes = [
                 path: 'check-out',
                 component: CartCheckOutComponent
             },
+            {
+                path: '**',
+                pathMatch: 'full',
+                redirectTo: 'products'
+            }
         ]
     },
     {

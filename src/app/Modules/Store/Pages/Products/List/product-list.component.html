@@ -3,23 +3,32 @@
       <mat-card-title>Filters</mat-card-title>
       <mat-card-content>
         <div class="row">
-            <mat-form-field class="col-3">
-                <mat-label>Product Name</mat-label>
-                <input matInput>
+            <mat-form-field class="col-4">
+                <mat-label >Product Name</mat-label>
+                <input matInput [(ngModel)]="request.Name">
+            </mat-form-field>
+            <mat-form-field class="col-8">
+                <mat-label >Description</mat-label>
+                <input matInput [(ngModel)]="request.Description">
             </mat-form-field>
             <mat-form-field class="col-3">
-                <mat-label>Description</mat-label>
-                <input matInput>
+                <mat-label >Category</mat-label>
+                <input matInput [(ngModel)]="request.Category">
             </mat-form-field>
             <mat-form-field class="col-3">
-                <mat-label>Category</mat-label>
-                <input matInput>
+                <mat-label >Trademark</mat-label>
+                <input matInput [(ngModel)]="request.Trademark">
             </mat-form-field>
-            <mat-form-field class="col-3">
-                <mat-label>Trademark</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </div>
+            <mat-form-field class="col-3" floatLabel="always">
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"  [(ngModel)]="request.Price">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+              </mat-form-field>
+              <div class=" col-3 d-flex justify-content-center align-items-center">
+                  <button mat-raised-button class="w-50" (click)="GetProducts()">Search</button>
+              </div>
+            </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -27,9 +36,10 @@
     <div class="col">
       <app-product
         *ngFor="let product of products"
+        [Id]="1"
         [Name]="product.Name"
         [ImageUrl]="product.ImageUrl"
-        [Quantity]="0"
+        [Price]="product.Price"
       >
       </app-product>
     </div>

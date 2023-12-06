@@ -1,4 +1,4 @@
-export interface ProductQueryRequest {
+export class ProductQueryRequest {
     Name?: string;
     Description?: string;
     Category?: string;
